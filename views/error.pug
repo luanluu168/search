@@ -1,19 +1,12 @@
-doctype html
-head
-  title Search
-  // Required meta tags
-  meta(charset='utf-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
-  // Bootstrap CSS
-  link(rel='stylesheet' href='vendors/bootstrap/bootstrap.min.css')
-  link(rel='stylesheet' href='styles/styles.css')
-body
-    .message-box
-        h1 #{code}
-        small #{msg}
-        a.btn.btn-lg.btn-primary(href='/' class="mt-2") Go to Home Page
+extends layout.pug 
 
-    // JavaScript
-    script(src='vendors/jquery/jquery-3.3.1.slim.min.js')
-    script(src='vendors/popper/popper.min.js')
-    script(src='vendors/bootstrap/bootstrap.min.js')
+block content
+  .message-box
+      h1 #{code}
+      small #{msg}
+      a.btn.btn-lg.btn-primary(href='/' class="mt-2") Go to Home Page
+
+  // JavaScript
+  script(src='vendors/jquery/jquery-3.3.1.slim.min.js')
+  script(src='vendors/popper/popper.min.js')
+  script(src='vendors/bootstrap/bootstrap.min.js')
