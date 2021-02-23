@@ -102,8 +102,8 @@ function animatePath(exploredPath, resultPath, problem) {
             document.getElementById(exploredPath[i]).style.backgroundColor = `rgba(192, 192, 192, 1)`;
             // opacity += 0.017;
 
-            if((problem === PROBLEM_TYPE.DFS) && (i == exploredPath.length - 2)) { cb(exploredPath) }
             // the case of DFS
+            if((problem === PROBLEM_TYPE.DFS) && (i == exploredPath.length - 2)) { cb(exploredPath) }
             else if(i == exploredPath.length - 2) { cb() }
         }, i * delayInMilliseconds);
     }

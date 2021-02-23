@@ -130,20 +130,23 @@ class GraphNode {
         let currentY = startNode.y;
         let  isIncreaseY = false; // for making diagonal path
         let shortestPath = [];
-        
+        let currentNodeId;
         while(currentX !== endNode.x && currentY !== endNode.y) {
-            const currentNodeId = `${currentX}-${currentY}`;
-            shortestPath.push(currentNodeId);
+            currentNodeId = `${currentX}-${currentY}`;
+            if(exploredPath.includes(currentNodeId)) shortestPath.push(currentNodeId);
+
             if(isIncreaseY) { currentY += deltaY }
             else { currentX += deltaX };
             isIncreaseY = !isIncreaseY;
         }
         while(currentX !== endNode.x) {
-            shortestPath.push(`${currentX}-${currentY}`);
+            currentNodeId = `${currentX}-${currentY}`;
+            if(exploredPath.includes(currentNodeId)) shortestPath.push(currentNodeId);
             currentX += deltaX;
         }
         while(currentY !== endNode.y) {
-            shortestPath.push(`${currentX}-${currentY}`);
+            currentNodeId = `${currentX}-${currentY}`;
+            if(exploredPath.includes(currentNodeId)) shortestPath.push(currentNodeId);
             currentY += deltaY;
         }
 
