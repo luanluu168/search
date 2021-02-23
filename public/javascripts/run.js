@@ -36,6 +36,7 @@ function run() {
         }
     } catch(err) {
         console.log(`Error: ${err}`);
+    } finally {
         enableRunButton();
     }
 };

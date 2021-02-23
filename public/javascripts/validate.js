@@ -4,15 +4,8 @@ const startPositionRowIndex = $("#startPositionRowIndex");
 const startPositionColIndex = $("#startPositionColIndex");
 
 function validate(input, isRow) {
-    // the case where start row matches end row or 
-    // the case where start col matches end col
-    if((isRow && input == END_POSITION_AT_ROW) ||
-      (!isRow && input == END_POSITION_AT_COL)) {
-        openAlert(isRow, "Start row or start column cannot match with end row or end column");
-        return false;
-      }
-
     const alertText = "Please enter # from 0 to 19";
+    // the case where the input is not a number, not in range from 0 to 19, or the input is a space
     if(isNaN(input) || input < 0 || input > 19 || input.match("[\\s]")) {
         openAlert(isRow, alertText);
         return false;
