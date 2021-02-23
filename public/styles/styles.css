@@ -32,6 +32,15 @@ html,body,.wrap-section {
     text-align: center;
 }
 
+.expanded-rectangle {
+    width: 1.3rem;
+    height: 1.3rem;
+    border: none;
+    background-color: rgb(168,168,168);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
 .end-rectangle {
     width: 1.3rem;
     height: 1.3rem;
