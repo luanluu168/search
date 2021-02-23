@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.all('*', (req, res) => {
-    res.render('error', {msg: "The page you're looking for does not exist", code: 404})
+    res.render('error', {actionType: "Access none a non exist route", msg: "The page you're looking for does not exist", code: 404});
 });
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
