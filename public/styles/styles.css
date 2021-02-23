@@ -29,7 +29,9 @@ html,body,.wrap-section {
     background-color: rgb(255,128,128);
     color: rgb(0, 0, 255);
     font-size: 0.9rem;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .expanded-rectangle {
@@ -38,7 +40,6 @@ html,body,.wrap-section {
     border: none;
     background-color: rgb(168,168,168);
     font-size: 0.9rem;
-    text-align: center;
 }
 
 .end-rectangle {
@@ -46,29 +47,36 @@ html,body,.wrap-section {
     height: 1.3rem;
     border: none;
     background-color: rgb(255, 0, 0);
-    font-size: 0.85rem;
-    padding-left: 3px;
-}
-
-.info-container {
+    font-size: 0.9rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.info-component {
-    display: inline-flex;
-    margin: 5px;
+.info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.info-item-component {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    margin: 0.25rem;
 }
 
 @media (min-width: 200px) {  
     h1 {font-size:1.7rem;} 
-    .info-component { font-size: 0.8rem; }
+    .info-component { font-size: 0.7rem; }
     .form-label-text { font-size: 0.87rem; }
     .web-logo-img { 
         width: 8rem;
         height: 8rem;
     }
+    .info-item-component-text { font-size: 0.58rem; }
 }
 
 @media (min-width: 544px) {  
@@ -79,6 +87,7 @@ html,body,.wrap-section {
         width: 8rem;
         height: 8rem;
     }
+    .info-item-component-text { font-size: 0.7rem; }
 }
    
 @media (min-width: 768px) {  
@@ -89,6 +98,7 @@ html,body,.wrap-section {
         width: 10rem;
         height: 10rem;
     }
+    .info-item-component-text { font-size: 1rem; }
 }
    
 @media (min-width: 992px) { 
@@ -99,6 +109,7 @@ html,body,.wrap-section {
         width: 11rem;
         height: 11rem;
     }
+    .info-item-component-text { font-size: 1.25rem; }
 }
    
 @media (min-width: 1200px) {  
@@ -109,10 +120,11 @@ html,body,.wrap-section {
         width: 12rem;
         height: 12rem;
     }
+    .info-item-component-text { font-size: 1.4rem; }
 }
 
 .grid-board {
-    margin: 1rem auto;
+    margin: 0.5rem auto;
     width: 100%;
     height: auto;
 }
@@ -185,4 +197,8 @@ html,body,.wrap-section {
 .web-logo-img {
     margin: 0px auto;
     padding: 0px;
+}
+
+.title-text {
+    margin: -25px auto 1rem;
 }

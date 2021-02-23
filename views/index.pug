@@ -30,20 +30,20 @@ block content
     // Heading
     section.wrap-section.text-center
         img(class="web-logo-img" src="/assets/GraphSearchLogo.png", alt="web-logo" onerror="this.style.display='none'")
-        h1 Graph Search
+        h1.title-text Graph Search
         .info-container
-            h5.info-component
-            .start-rectangle.mr-2 &#9992;
-            | Start position
-            h5.info-component
-            .expanded-rectangle.mr-2
-            | Expanded position
-            h5.info-component
-            .mix-color-rectangle.mr-2
-            | Path
-            h5.info-component
-            .end-rectangle.mr-2 &#127937
-            | End position
+            .info-item-component
+                .start-rectangle.mr-1 &#9992;
+                span.info-item-component-text Start position
+            .info-item-component
+                .expanded-rectangle.mr-1
+                span.info-item-component-text Explored position
+            .info-item-component
+                .mix-color-rectangle.mr-1
+                span.info-item-component-text Path
+            .info-item-component
+                .end-rectangle.mr-1 &#127937
+                span.info-item-component-text End position
         // grid board
         section#grid-board.grid-board(name='grid-board')
 
