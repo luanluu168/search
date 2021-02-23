@@ -1,68 +1,73 @@
 doctype html
-head
-  title Search
-  // Required meta tags
-  meta(charset='utf-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
-  // Bootstrap CSS
-  link(rel='stylesheet' href='vendors/bootstrap/bootstrap.min.css')
-  link(rel='stylesheet' href='styles/styles.css')
-body
-    // Side menu
-    span.hamburger(onclick='openSideMenu()') &#x2630; 
-        small Menu
-    #sideMenu.side-menu
-        a.close-side-menu-btn(href='javascript:void(0)' onclick='closeSideMenu()') &times;
-        // Search type
-        form.d-flex.flex-column.justify-content-center.align-items-center.m-2.text-white
-            label.form-label-text(for='selectProblem') Please Select A Search Type: 
-            select#selectProblem.custom-select.my-2
-                option(selected='' value='A_star') A*
-                option(value='Breadth_first_search') BFS
-                option(value='Depth_first_search') DFS
-                option(value='Djkstra') DJKSTRA
-            // Input row
-            label(for='startPositionRowIndex') Start Row: 
-            #inputRowAlert.alert.alert-warning.d-none
-            input#startPositionRowIndex.form-control.form-control-md.my-1(type='text' value='7' placeholder='Row # from 0 to 19' onkeyup='if(!validate(this.value, true)) this.value=0;' aria-expanded='true')
-            // Input col
-            label.mt-1(for='startPositionColIndex') Start Column: 
-            #inputColAlert.alert.alert-warning.d-none
-            input#startPositionColIndex.form-control.form-control-md.my-1(type='text' value='7' placeholder='Col # from 0 to 19' onkeyup='if(!validate(this.value, false)) this.value=0;' aria-expanded='true')
-            label.form-label-text(for='selectDisplayCost') Display Cost:
-            select#selectDisplayCost.custom-select.my-1
-                option(selected='' value='no') No
-                option(value='yes') Yes
-            button#runButton.btn.btn-lg.btn-primary.mt-4.w-100(type='submit' onclick='run()' disabled='false') Run
-    // Heading
-    section.wrap-section.text-center
-        h1.mt-1 Graph Search
-        .info-container
-            h5.info-component
-            .start-rectangle.mr-2 &#9992;
-            | Start position
-            h5.info-component
-            .expanded-rectangle.mr-2
-            | Expanded position
-            h5.info-component
-            .mix-color-rectangle.mr-2
-            | Path
-            h5.info-component
-            .end-rectangle.mr-2 &#127937
-            | End position
-        // grid board
-        section#grid-board.grid-board(name='grid-board')
+html(lang="en")
+    head
+        title Search
+        // Required meta tags
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        // Favicon 
+        link(rel='icon' type='image/x-icon' href='/assets/favicon.ico')
+        // Bootstrap CSS
+        link(rel='stylesheet' href='vendors/bootstrap/bootstrap.min.css')
+        link(rel='stylesheet' href='styles/styles.css')
+    body
+        // Side menu
+        span.hamburger(onclick='openSideMenu()') &#x2630; 
+            small Menu
+        #sideMenu.side-menu
+            a.close-side-menu-btn(href='javascript:void(0)' onclick='closeSideMenu()') &times;
+            // Search type
+            form.d-flex.flex-column.justify-content-center.align-items-center.m-2.text-white
+                label.form-label-text(for='selectProblem') Please Select A Search Type: 
+                select#selectProblem.custom-select.my-2
+                    option(selected='' value='A_star') A*
+                    option(value='Breadth_first_search') BFS
+                    option(value='Depth_first_search') DFS
+                    option(value='Djkstra') DJKSTRA
+                // Input row
+                label(for='startPositionRowIndex') Start Row: 
+                #inputRowAlert.alert.alert-warning.d-none
+                input#startPositionRowIndex.form-control.form-control-md.my-1(type='text' value='7' placeholder='Row # from 0 to 19' onkeyup='if(!validate(this.value, true)) this.value=0;' aria-expanded='true')
+                // Input col
+                label.mt-1(for='startPositionColIndex') Start Column: 
+                #inputColAlert.alert.alert-warning.d-none
+                input#startPositionColIndex.form-control.form-control-md.my-1(type='text' value='7' placeholder='Col # from 0 to 19' onkeyup='if(!validate(this.value, false)) this.value=0;' aria-expanded='true')
+                label.form-label-text(for='selectDisplayCost') Display Cost:
+                select#selectDisplayCost.custom-select.my-1
+                    option(selected='' value='no') No
+                    option(value='yes') Yes
+                button#runButton.btn.btn-lg.btn-primary.mt-4.w-100(type='submit' onclick='run()' disabled='false') Run
+        // Heading
+        section.wrap-section.text-center
+            .d-inline-block 
+                img(class="web-logo-img" src="/assets/GraphSearchLogo.png", alt="web-logo" onerror="this.style.display='none'")
+                h1 Graph Search
+            .info-container
+                h5.info-component
+                .start-rectangle.mr-2 &#9992;
+                | Start position
+                h5.info-component
+                .expanded-rectangle.mr-2
+                | Expanded position
+                h5.info-component
+                .mix-color-rectangle.mr-2
+                | Path
+                h5.info-component
+                .end-rectangle.mr-2 &#127937
+                | End position
+            // grid board
+            section#grid-board.grid-board(name='grid-board')
 
-    // JavaScript
-    script(src='vendors/jquery/jquery-3.3.1.slim.min.js')
-    script(src='vendors/popper/popper.min.js')
-    script(src='vendors/bootstrap/bootstrap.min.js')
-    script(src='javascripts/validate.js')
-    script(src='javascripts/node.js')
-    script(src='javascripts/constant.js')
-    script(src='javascripts/stack.js')
-    script(src='javascripts/queue.js')
-    script(src='javascripts/priority-queue.js')
-    script(src='javascripts/utils.js')
-    script(src='javascripts/graph.js')
-    script(src='javascripts/run.js')
+        // JavaScript
+        script(src='vendors/jquery/jquery-3.3.1.slim.min.js')
+        script(src='vendors/popper/popper.min.js')
+        script(src='vendors/bootstrap/bootstrap.min.js')
+        script(src='javascripts/validate.js')
+        script(src='javascripts/node.js')
+        script(src='javascripts/constant.js')
+        script(src='javascripts/stack.js')
+        script(src='javascripts/queue.js')
+        script(src='javascripts/priority-queue.js')
+        script(src='javascripts/utils.js')
+        script(src='javascripts/graph.js')
+        script(src='javascripts/run.js')
