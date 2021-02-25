@@ -97,7 +97,7 @@ function grid(element, problem, startPositionAtRow, startPositionAtCol, startNod
     element.style.color = "blue";
 };
 
-function animatePath(exploredPath, resultPath, problem) {
+function animatePath(exploredPath, resultPath) {
     function cb(path = resultPath) {
         for(let i=1; i<path.length-1; i++) {
             setTimeout(() => {
