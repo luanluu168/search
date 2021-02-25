@@ -43,10 +43,25 @@ function grid(element, problem, startPositionAtRow, startPositionAtCol, startNod
             grid.style = `width:${BOX_SIZE}px;height:${BOX_SIZE}px;box-sizing:border-box;`;
             grid.id = `${i}-${j}`;
 
-            if(isStartRow && j === startPositionAtCol)  { grid.innerHTML = "&#9992;", grid.style.backgroundColor = "rgb(255,128,128)" }
-            else if(isEndRow && j === END_POSITION_AT_COL) { grid.innerHTML = "&#127937", grid.style.backgroundColor = "rgb(255, 0, 0)" }
+            if(isStartRow && j === startPositionAtCol)  { grid.innerHTML = "&#9992;", grid.style.backgroundColor = START_POSITION_COLOR }
+            else if(isEndRow && j === END_POSITION_AT_COL) { grid.innerHTML = "&#127937", grid.style.backgroundColor = END_POSITION_COLOR }
             else grid.style.backgroundColor = "lightgrey"
 
+            // add some walls
+            if( i==4 && j==14 || i==5 && j==14 || i==6 && j==14 || i==7 && j==14 || i==8 && j==14 ||
+                i==4 && j==13 ||
+                i==4 && j==12) {
+                row.appendChild(grid);
+                grid.style.backgroundColor = WALL_COLOR;
+                const gridNode = new Node(i, j, grid, "wall");
+                gn.addVertex(gridNode);
+                // for horizontal edge linking
+                previousColGrid = gridNode;
+                // for vertical edge linking
+                previousRowGrid[j % MAX_COLS] = gridNode;
+                continue;
+            }
+            
             row.appendChild(grid);
 
             // add grid to graph
@@ -99,12 +114,11 @@ function animatePath(exploredPath, resultPath, problem) {
     const delayInMilliseconds = 10;
     for(let i=1; i<exploredPath.length-1; i++) {
         setTimeout(() => {
+            // draw expanded nodes
             document.getElementById(exploredPath[i]).style.backgroundColor = `rgba(192, 192, 192, 1)`;
-            // opacity += 0.017;
-
-            // the case of DFS
-            if((problem === PROBLEM_TYPE.DFS) && (i == exploredPath.length - 2)) { cb(exploredPath) }
-            else if(i == exploredPath.length - 2) { cb() }
+            
+            // draw the path
+            if(i == exploredPath.length - 2) { cb() }
         }, i * delayInMilliseconds);
     }
 };
@@ -124,4 +138,10 @@ function disableInputRowColAlert() {
 
 function enableRunButton() {
     document.getElementById("runButton").disabled = false;
+};
+
+function addEventListenerToGrid(object) {
+    object.addEventListener("click", () => {
+        object.style.backgroundColor = WALL_COLOR;
+    });
 };

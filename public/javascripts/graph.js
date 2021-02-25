@@ -9,8 +9,7 @@ class GraphNode {
         const idKey = node.id;
         if(!this.adjacencyList[idKey]) this.adjacencyList[idKey] = [];
 
-        const nodeKey = this.makeKey(node);
-        if(!this.nodesData[nodeKey]) this.nodesData[nodeKey] = [];
+        if(!this.nodesData[idKey]) this.nodesData[idKey] = [];
     }
 
     makeKey(node) {
@@ -33,8 +32,14 @@ class GraphNode {
         }
         
         // Djkstra, a-star
+        // ignore if one of the nodes is a wall
+        if(startNode.type === 'wall' || endNode.type === 'wall') {
+            return;
+        }
         this.adjacencyList[startNodeIdKey].push({id:endNodeIdKey, weight});
         this.adjacencyList[endNodeIdKey].push({id:startNodeIdKey, weight});
+        this.nodesData[startNodeIdKey].push({id:endNodeIdKey, path:[], weight});
+        this.nodesData[endNodeIdKey].push({id:startNodeIdKey, path:[], weight});
         this.costList[`${startNodeIdKey}&${endNodeIdKey}`] = weight;
     }
 
@@ -158,22 +163,36 @@ class GraphNode {
         return this.genericGraphSearch(new PriorityQueue(), startNodeId, PROBLEM_TYPE.A_STAR, startNode, endNode, this.heuristic);
     }
 
+    reconstructPath(exploredSet, currentNode) {
+        let shortestPath = [currentNode];
+        while(exploredSet[currentNode]) {
+            currentNode = exploredSet[currentNode];
+            shortestPath.push(currentNode);
+        }
+        return shortestPath.reverse();
+    }
+
     genericGraphSearch(frontier, startNodeId, problem, startNode, endNode, heuristic = undefined) {
         const exploredPath = [];
         const  exploredSet = {};
         let           done = false;
+        let    parentNodes = {};
+        let         result = [];
         const INITIAL_PRIORITY = 0;
         let currentNode;
 
         if(problem === PROBLEM_TYPE.UNWEIGHTED_GRAPH) frontier.push(startNodeId)
         else frontier.push(startNodeId, INITIAL_PRIORITY)
 
+        parentNodes[startNodeId] = null;
+
         while(!done) {
             currentNode = (frontier instanceof PriorityQueue) ? frontier.pop().id : frontier.pop();
 
             if (this.isGoal(currentNode)) {
                 exploredPath.push(currentNode);
-                done = true;
+                result = this.reconstructPath(parentNodes, currentNode);
+                done   = true;
                 continue;
             }
 
@@ -182,6 +201,7 @@ class GraphNode {
                 exploredPath.push(currentNode);
                 for(let neighborNode of this.adjacencyList[currentNode]) {
                     if(!exploredSet[neighborNode.id]) { // if the exploredSet does not contain the neighborNode
+                        parentNodes[neighborNode.id] = currentNode; // for finding shortest path
                         // the case where the problem is DFS & BFS
                         if(problem === PROBLEM_TYPE.UNWEIGHTED_GRAPH) {
                             frontier.push(neighborNode.id);
@@ -197,9 +217,16 @@ class GraphNode {
             done = this.isEmpty();
         }
     
-        const shortestPath = this.getPathFromExploredPath(startNode, endNode, exploredPath);
-        return [exploredPath, shortestPath];
+        return [exploredPath, result];
     }
 };
 
 const gn = new GraphNode();
+
+// addVertex(node) {
+//     const idKey = node.id;
+//     if(!this.adjacencyList[idKey]) this.adjacencyList[idKey] = [];
+
+//     const nodeKey = this.makeKey(node);
+//     if(!this.nodesData[nodeKey]) this.nodesData[nodeKey] = [];
+// }
