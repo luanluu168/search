@@ -53,6 +53,17 @@ html,body,.wrap-section {
     align-items: center;
 }
 
+.wall-rectangle {
+    width: 1.3rem;
+    height: 1.3rem;
+    border: none;
+    background-color: rgb(210,105,30);
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .info-container {
     display: flex;
     flex-direction: row;
@@ -200,5 +211,5 @@ html,body,.wrap-section {
 }
 
 .title-text {
-    margin: -25px auto 1rem;
+    margin: -30px auto 0.5rem;
 }
