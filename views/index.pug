@@ -22,7 +22,7 @@ block content
             label.mt-1(for='startPositionColIndex') Start Column: 
             #inputColAlert.alert.alert-warning.d-none
             input#startPositionColIndex.form-control.form-control-md.my-1(type='text' value='7' placeholder='Col # from 0 to 19' onkeyup='if(!validate(this.value, false)) this.value=0;' aria-expanded='true')
-            label.form-label-text(for='selectDisplayCost') Display Cost:
+            label.form-label-text(for='selectDisplayCost') Display Movement Cost:
             select#selectDisplayCost.custom-select.my-1
                 option(selected='' value='no') No
                 option(value='yes') Yes
@@ -30,20 +30,25 @@ block content
     // Heading
     section.wrap-section.text-center
         img(class="web-logo-img" src="/assets/GraphSearchLogo.png", alt="web-logo" onerror="this.style.display='none'")
-        h1.title-text Graph Search
+        h1.title-text Pathfinding Algorithm
         .info-container
             .info-item-component
                 .start-rectangle.mr-1 &#9992;
-                span.info-item-component-text Start position
+                span.info-item-component-text Start Grid
             .info-item-component
                 .expanded-rectangle.mr-1
-                span.info-item-component-text Explored position
+                span.info-item-component-text Explored Grid
             .info-item-component
                 .mix-color-rectangle.mr-1
                 span.info-item-component-text Path
             .info-item-component
+                .wall-rectangle.mr-1
+                span.info-item-component-text Wall
+            .info-item-component
                 .end-rectangle.mr-1 &#127937
-                span.info-item-component-text End position
+                span.info-item-component-text End Grid
+            
+        button.btn.btn-lg.btn-primary.my-2.px-5(type='button' onclick='run()') Run
         // grid board
         section#grid-board.grid-board(name='grid-board')
 
@@ -57,6 +62,7 @@ block content
     script(src='javascripts/stack.js')
     script(src='javascripts/queue.js')
     script(src='javascripts/priority-queue.js')
+    script(src='javascripts/mapData.js')
     script(src='javascripts/utils.js')
     script(src='javascripts/graph.js')
     script(src='javascripts/run.js')
