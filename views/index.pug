@@ -48,7 +48,14 @@ block content
                 .end-rectangle.mr-1 &#127937
                 span.info-item-component-text End Grid
             
-        button.btn.btn-lg.btn-primary.my-2.px-5(type='button' onclick='run()') Run
+        .run-map-container
+            .run-map-item
+                span Map:
+                select#selectMap.custom-select.mx-2
+                    option( value='L_MAP') L_MAP
+                    option(selected='' value='MAZE_MAP') MAZE_MAP 
+                    option(value='EMPTY_MAP') EMPTY_MAP
+            button.btn.btn-md.btn-primary.px-5(type='button' onclick='run()') Run
         // grid board
         section#grid-board.grid-board(name='grid-board')
 
@@ -65,5 +72,5 @@ block content
     script(src='javascripts/mapData.js')
     script(src='javascripts/utils.js')
     script(src='javascripts/graph.js')
-    script(src='javascripts/problemMap.js')
+    script(src='javascripts/searchProblem.js')
     script(src='javascripts/run.js')

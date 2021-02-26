@@ -213,3 +213,18 @@ html,body,.wrap-section {
 .title-text {
     margin: -30px auto 0.5rem;
 }
+
+.run-map-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 8px auto 18px;
+}
+
+.run-map-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
