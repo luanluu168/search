@@ -119,12 +119,16 @@ class GraphNode {
 
     heuristic(nodeId, endNode) {
         const nodeCors = extractId(nodeId);
-        return manhatanDistance(endNode.x, endNode.y, nodeCors[0], nodeCors[1]) / 2;
+        return manhatanDistance(endNode.x, endNode.y, nodeCors[0], nodeCors[1]);
     }
 
     getCost(nodeId, startNode) {
         const nodeCors = extractId(nodeId);
         return manhatanDistance(startNode.x, startNode.y, nodeCors[0], nodeCors[1]);
+    }
+
+    bestFirstSearch(startNodeId, startNode, endNode) {
+        return this.genericGraphSearch(new PriorityQueue(), startNodeId, PROBLEM_TYPE.BEST_FIRST_SEARCH, startNode, endNode, this.heuristic);
     }
 
     getPathFromExploredPath(startNode, endNode, exploredPath) {
@@ -210,6 +214,9 @@ class GraphNode {
                             const backwardCost = this.getCost(neighborNode.id, startNode); // fix efficency
                             const    totalCost = backwardCost + heuristic(neighborNode.id, endNode);
                             frontier.push(neighborNode.id, totalCost);
+                        } else if(problem === PROBLEM_TYPE.BEST_FIRST_SEARCH) {
+                            const cost =  heuristic(neighborNode.id, endNode);
+                            frontier.push(neighborNode.id, cost);
                         }
                     } 
                 }

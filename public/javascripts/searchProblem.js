@@ -20,6 +20,10 @@ var SearchProblem = (function () {
             const [exploredPath, resultPath] = gn.dfs(startNode.id, startNode, endNode);
             animatePath(exploredPath, resultPath);
         };
+        map[PROBLEM_TYPE.BEST_FIRST_SEARCH] = (gn, startNode, endNode) => {
+            const [exploredPath, resultPath] = gn.bestFirstSearch(startNode.id, startNode, endNode);
+            animatePath(exploredPath, resultPath);
+        };
     }
 
     return {

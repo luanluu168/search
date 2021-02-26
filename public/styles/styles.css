@@ -219,7 +219,7 @@ html,body,.wrap-section {
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    margin: 8px auto 18px;
+    margin: 8px auto 10px;
 }
 
 .run-map-item {

@@ -15,7 +15,8 @@ const PROBLEM_TYPE = {
     DFS: "Depth_first_search",
     BFS: "Breadth_first_search",
     DJKSTRA: "Djkstra",
-    A_STAR: "A_star"
+    A_STAR: "A_star",
+    BEST_FIRST_SEARCH: "Best_first_search"
 };
 
 const MAP = {

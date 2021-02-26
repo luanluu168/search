@@ -14,6 +14,7 @@ block content
                 option(value='Breadth_first_search') BFS
                 option(value='Depth_first_search') DFS
                 option(value='Djkstra') DJKSTRA
+                option(value='Best_first_search') Best First Search
             // Input row
             label(for='startPositionRowIndex') Start Row: 
             #inputRowAlert.alert.alert-warning.d-none
@@ -52,10 +53,15 @@ block content
             .run-map-item
                 span Map:
                 select#selectMap.custom-select.mx-2
-                    option( value='L_MAP') L_MAP
+                    option(value='L_MAP') L_MAP
                     option(selected='' value='MAZE_MAP') MAZE_MAP 
                     option(value='EMPTY_MAP') EMPTY_MAP
             button.btn.btn-md.btn-primary.px-5(type='button' onclick='run()') Run
+
+        .d-flex.flex-row.justify-content-center
+            u Total explored grids:
+            h5#exploredNodes.ml-2 
+
         // grid board
         section#grid-board.grid-board(name='grid-board')
 

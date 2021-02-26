@@ -119,6 +119,7 @@ function animatePath(exploredPath, resultPath) {
             if(i == exploredPath.length - 2) { cb() }
         }, i * delayInMilliseconds);
     }
+    displayTotalExploredNodes(exploredPath.length);
 };
 
 function openSideMenu() {
@@ -143,3 +144,7 @@ function addEventListenerToGrid(object) {
         object.style.backgroundColor = WALL_COLOR;
     });
 };
+
+function displayTotalExploredNodes(value) {
+    document.getElementById("exploredNodes").innerHTML = value;
+}
