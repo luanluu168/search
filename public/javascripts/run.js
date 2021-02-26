@@ -1,5 +1,10 @@
-function run() {
+async function run() {
     try {
+        let          gn = new GraphNode();
+        // setup map data
+        let     mapData = MapData.getInstance();
+        mapData.change(document.getElementById("selectMap").value);
+
         disableInputRowColAlert();
         // Dynamic change the position
         const START_POSITION_AT_ROW = parseInt(document.getElementById("startPositionRowIndex").value);
@@ -12,9 +17,9 @@ function run() {
         if(gridBoard) { clearDiv('grid-board') };
         const SELECTED_PROBLEM_TYPE = document.getElementById("selectProblem");
         const           problemType = SELECTED_PROBLEM_TYPE.value;
-        grid(document.querySelector('section[name="grid-board"]'), problemType, START_POSITION_AT_ROW, START_POSITION_AT_COL, START_NODE);
-        // use problem map to execute the problem types
-        ProblemMap.getInstance().execute(problemType, START_NODE, END_NODE);
+        grid(document.querySelector('section[name="grid-board"]'), problemType, START_POSITION_AT_ROW, START_POSITION_AT_COL, START_NODE, mapData, gn);
+        // use search problem's instance to execute the problem types
+        SearchProblem.getInstance().execute(gn, problemType, START_NODE, END_NODE);
     } catch(err) {
         console.log(`Error: ${err}`);
     } finally {
@@ -25,26 +30,3 @@ function run() {
 window.onload = () => {
     run();
 };
-
-
-// switch(problemType) {
-//     case PROBLEM_TYPE.A_STAR: {
-//         const [exploredPath, resultPath] = gn.aStar(START_NODE.id, START_NODE, END_NODE);
-//         animatePath(exploredPath, resultPath);
-//         break;
-//     }
-//     case PROBLEM_TYPE.DJKSTRA: {
-//         const [exploredPath, resultPath] = gn.Dijkstra(START_NODE.id, END_NODE.id);
-//         animatePath(exploredPath, resultPath);
-//         break;
-//     }
-//     case PROBLEM_TYPE.BFS: {
-//         const [exploredPath, resultPath] = gn.bfs(START_NODE.id, START_NODE, END_NODE);
-//         animatePath(exploredPath, resultPath);
-//         break;
-//     }
-//     default: { // DFS
-//         const [exploredPath, resultPath] = gn.dfs(START_NODE.id, START_NODE, END_NODE);
-//         animatePath(exploredPath, resultPath);
-//     }
-// }

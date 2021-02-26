@@ -221,8 +221,6 @@ class GraphNode {
     }
 };
 
-const gn = new GraphNode();
-
 // addVertex(node) {
 //     const idKey = node.id;
 //     if(!this.adjacencyList[idKey]) this.adjacencyList[idKey] = [];

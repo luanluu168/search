@@ -20,7 +20,7 @@ function getBoxWidth(totalBoxInRow) {
 };
 
 /* Creating a grid board */
-function grid(element, problem, startPositionAtRow, startPositionAtCol, startNode) {
+function grid(element, problem, startPositionAtRow, startPositionAtCol, startNode, mapData, gn) {
     let isStartRow, isEndRow, row, previousColGrid, previousRowGrid = [];
     let container = document.createElement("div");
     container.id  = "grid-board";
@@ -48,9 +48,7 @@ function grid(element, problem, startPositionAtRow, startPositionAtCol, startNod
             else grid.style.backgroundColor = "lightgrey"
 
             // add some walls
-            if( i==4 && j==14 || i==5 && j==14 || i==6 && j==14 || i==7 && j==14 || i==8 && j==14 ||
-                i==4 && j==13 ||
-                i==4 && j==12) {
+            if(mapData.isWall(i, j)) {
                 row.appendChild(grid);
                 grid.style.backgroundColor = WALL_COLOR;
                 const gridNode = new Node(i, j, grid, "wall");
