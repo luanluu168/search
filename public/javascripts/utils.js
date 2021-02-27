@@ -43,8 +43,8 @@ function grid(element, problem, startPositionAtRow, startPositionAtCol, startNod
             grid.style = `width:${BOX_SIZE}px;height:${BOX_SIZE}px;box-sizing:border-box;`;
             grid.id = `${i}-${j}`;
 
-            if(isStartRow && j === startPositionAtCol)  { grid.innerHTML = "&#9992;", grid.style.backgroundColor = START_POSITION_COLOR }
-            else if(isEndRow && j === END_POSITION_AT_COL) { grid.innerHTML = "&#127937", grid.style.backgroundColor = END_POSITION_COLOR }
+            if(isStartRow && j === startPositionAtCol)     { grid.innerHTML = "&#9992;", grid.style.backgroundColor = START_POSITION_COLOR, grid.style.fontSize = `${BOX_SIZE-10}pt` }
+            else if(isEndRow && j === END_POSITION_AT_COL) { grid.innerHTML = "&#127937", grid.style.backgroundColor = END_POSITION_COLOR, grid.style.fontSize = `${BOX_SIZE-10}pt` }
             else grid.style.backgroundColor = "lightgrey"
 
             // add some walls
